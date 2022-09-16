@@ -1,8 +1,7 @@
 import React from "react";
 import ReactPortal from "./react-portal";
 
-const Modal = ({ children, id, visible }) => {
-	if (!visible) return null;
+const Modal = ({ children, id }) => {
 	return (
 		<>
 			<ReactPortal wrapperId={id}>{children}</ReactPortal>
