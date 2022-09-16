@@ -50,4 +50,5 @@ const PortalProvider = ({ children }) => {
 	);
 };
 
+//Separate state and state setters
 export default PortalProvider;
