@@ -3,28 +3,28 @@ import { usePortalContextState, usePortalContextUpdater } from "../provider/port
 
 import ReactPortal from "../scripts/react-portal";
 
-const Modal = ({ children, id, className, closeOnEscapeKey, closeButton, onClose = () => {} }) => {
+const Modal = ({ children, id, closeOnEscapeKey, closeButton, onClose, clickOutsideClose = false }) => {
 	const { portal_components } = usePortalContextState(); //portal_component is a kind of a state of the modal_id
 	const portalModal = usePortalContextUpdater();
 
 	const handleClose = () => {
-		onClose();
 		portalModal.hide(id);
 	};
 
 	if (!portal_components.modal[id]) return null; //if this modal id is not present so do not render in the dom (optimization)
+	//and unmounts thew ReactPortal component
 
 	return (
-		<>
-			<ReactPortal wrapperId={id} closeOnEscapeKey={closeOnEscapeKey} handleClose={handleClose}>
-				{closeButton ? (
-					<button onClick={handleClose} className="close-btn">
-						Close
-					</button>
-				) : null}
-				<div>{children}</div>
-			</ReactPortal>
-		</>
+		<React.Fragment>
+			<div className="absolute top-0 left-0 right-0 bottom-0 bg-black/70">
+				<ReactPortal wrapperId={id} closeOnEscapeKey={closeOnEscapeKey} handleClose={handleClose} onClose={onClose} clickOutsideClose={clickOutsideClose}>
+					<div>
+						{children}
+						<div className="absolute top-0 bottom-0">{closeButton ? <button onClick={handleClose}>Close</button> : null}</div>
+					</div>
+				</ReactPortal>
+			</div>
+		</React.Fragment>
 	);
 };
 
