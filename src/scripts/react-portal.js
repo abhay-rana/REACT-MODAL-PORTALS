@@ -11,9 +11,8 @@ function createWrapperAndAppendToBody(wrapperId) {
 }
 
 const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEscapeKey, handleClose = () => {}, onClose, clickOutsideClose }) => {
-	useTilg();
 	const [wrapperElement, setWrapperElement] = useState(null);
-	console.log("wrapper element", wrapperElement);
+
 	//closing of the modal on the outside click
 	useEffect(() => {
 		const handleClickOutside = (e) => {
