@@ -1,8 +1,11 @@
 import React from "react";
+import { useModalUpdater } from "../provider/portal-provider";
+import Button from "./common/button";
 
 import Modal from "./common/modal";
 
 const UserModal = ({ id, ...rest }) => {
+	const { toggleModal } = useModalUpdater();
 	return (
 		<>
 			<Modal id={id} {...rest}>
@@ -34,6 +37,7 @@ const UserModal = ({ id, ...rest }) => {
 							quibusdam asperiores neque quidem illo ad nihil consequuntur similique. Sapiente, reprehenderit sed! Neque doloribus tenetur molestiae necessitatibus, voluptatem amet
 							provident quas debitis delectus modi dolor qui laboriosam quod quam?
 						</div>
+						<Button onClick={() => toggleModal.hide("user_modal")}>Close the modal</Button>
 					</div>
 				</div>
 			</Modal>

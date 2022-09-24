@@ -56,7 +56,6 @@ const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEsca
 		}
 		return () => {
 			if (!!closeOnEscapeKey) document.body.removeEventListener("keydown", closeOnEscape);
-			if (typeof onClose === "function") onClose(); //on unmounting run this function if a user specified
 		};
 	}, []);
 
@@ -79,6 +78,13 @@ const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEsca
 			}
 		};
 	}, [wrapperId]);
+
+	//run the onClose function if the user passed this prop on the unmounting
+	useEffect(() => {
+		return () => {
+			if (typeof onClose === "function") onClose(); //on unmounting run this function if a user specified
+		};
+	}, []);
 
 	// wrapperElement state will be null on very first render.
 	if (wrapperElement === null) return null;
