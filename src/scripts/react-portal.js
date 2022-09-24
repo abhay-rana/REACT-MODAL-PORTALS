@@ -10,12 +10,26 @@ function createWrapperAndAppendToBody(wrapperId) {
 	return wrapperElement;
 }
 
-const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEscapeKey, handleClose = () => {}, onClose, clickOutsideClose }) => {
+const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEscapeKey, handleClose = () => {}, onClose, clickOutsideClose, scrollLock }) => {
 	const [wrapperElement, setWrapperElement] = useState(null);
+
+	//disable the background scrolling of the modal
+	useEffect(() => {
+		// Disables Background Scrolling whilst the SideDrawer/Modal is open
+		if (typeof window != "undefined" && window.document && scrollLock) {
+			document.body.style.overflow = "hidden";
+		}
+		return () => {
+			// Unsets Background Scrolling to use when SideDrawer/Modal is closed
+			if (scrollLock) document.body.style.overflow = "unset";
+		};
+	}, []);
 
 	//closing of the modal on the outside click
 	useEffect(() => {
+		console.log("shows modal");
 		const handleClickOutside = (e) => {
+			console.log(e.target, wrapperElement);
 			if (wrapperElement.contains(e.target)) {
 				console.log("clicks inside");
 			} else {

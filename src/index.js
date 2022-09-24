@@ -5,13 +5,15 @@ import "./styles/global.css";
 
 import App from "./app";
 
-import PortalProvider from "./provider/portal-provider";
+import ModalProvider from "./provider/portal-provider";
+import Check from "./check";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<>
-		<PortalProvider>
+		<ModalProvider>
 			<App />
-		</PortalProvider>
+			{/* <Check /> */}
+		</ModalProvider>
 	</>
 );

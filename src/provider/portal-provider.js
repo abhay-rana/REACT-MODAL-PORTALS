@@ -5,7 +5,7 @@ const PortalContextState = createContext();
 const PortalContextUpdater = createContext();
 
 // context consumer hook
-export const usePortalContextState = () => {
+export const useModalState = () => {
 	// get the context
 	const context = useContext(PortalContextState);
 
@@ -14,11 +14,11 @@ export const usePortalContextState = () => {
 		throw new Error("usePortalContextState was used outside of its Provider");
 	}
 
-	return context;
+	return { modal: context };
 };
 
 // context consumer hook
-export const usePortalContextUpdater = () => {
+export const useModalUpdater = () => {
 	// get the context
 	const context = useContext(PortalContextUpdater);
 
@@ -27,28 +27,26 @@ export const usePortalContextUpdater = () => {
 		throw new Error("usePortalContextUpdater was used outside of its Provider");
 	}
 
-	return context;
+	return { toggleModal: context };
 };
 
-const PortalProvider = ({ children }) => {
-	const [portal_components, setPortalComponents] = useState({
-		modal: {},
-	});
+const ModalProvider = ({ children }) => {
+	const [portal_components, setPortalComponents] = useState({});
 
 	const portalModal = useMemo(
 		() => ({
-			hide: (id) => setPortalComponents((prev_state) => ({ ...prev_state, modal: { [id]: false } })),
-			show: (id) => setPortalComponents((prev_state) => ({ ...prev_state, modal: { [id]: true } })),
+			hide: (id) => setPortalComponents((prev_state) => ({ ...prev_state, [id]: false })),
+			show: (id) => setPortalComponents((prev_state) => ({ ...prev_state, [id]: true })),
 		}),
 		[]
 	); //memoized object so that on every change in the state the function wills not re-renders themselves
 
 	return (
-		<PortalContextState.Provider value={{ portal_components }}>
+		<PortalContextState.Provider value={portal_components}>
 			<PortalContextUpdater.Provider value={portalModal}>{children}</PortalContextUpdater.Provider>
 		</PortalContextState.Provider>
 	);
 };
 
 //Separate state and state setters
-export default PortalProvider;
+export default ModalProvider;

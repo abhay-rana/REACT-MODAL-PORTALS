@@ -13,8 +13,9 @@
 -   use of context so we can call the modal so no need of the props drilling and managing states
 
 //important props
-1-> id = "dummy_id" (string) //id name is very necessary, this id attached to the which is siblings to the root div
+1-> id = "dummy_id" (string) //id name is very necessary, this id attached to the which is siblings to the root div , modal should have a unique id
 2-> onClose={()=>{}} (function) // function , when you want to run on the closing of the modal
 3-> closeButton (Boolean) (default -> true)// if you want to show the close button
 4-> closeOnEscapeKey (Boolean) (default -> false) //if you want to close the modal on the "escape" key
 5-> clickOutsideClose (Boolean) (default -> false) //if you want to close the modal on the click of the outside
+6-> scrollLock (Boolean) (default->true) //if you want dont want to scrolling of the background (body) 
