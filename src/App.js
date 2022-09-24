@@ -2,7 +2,7 @@ import React from "react";
 import { useModalUpdater } from "./provider/portal-provider";
 
 import UserModal from "./components/user-modal";
-import Check from "./check";
+
 import Button from "./components/common/button";
 
 const App = () => {
