@@ -1,6 +1,5 @@
 import { useState, useLayoutEffect, useEffect } from "react";
 import { createPortal } from "react-dom";
-import useTilg from "tilg";
 
 //create the node-element and append to the body as the sibling of the "root" node
 function createWrapperAndAppendToBody(wrapperId) {

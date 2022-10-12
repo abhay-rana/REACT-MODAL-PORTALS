@@ -10,3 +10,30 @@ html {
 body {
 	min-height: 100vh;
 }
+
+
+.fade-in-animation{
+	animation:fadeIn 400ms ease 
+}
+
+.fade-out-animation{
+	animation:fadeOut 0ms ease 
+}
+
+@keyframes fadeIn {
+	0% {
+	  opacity: 0;
+	}
+	100% {
+	  opacity: 1;
+	}
+  }
+  
+  @keyframes fadeOut {
+	0% {
+	  opacity: 1;
+	}
+	100% {
+	  opacity: 0;
+	}
+  }

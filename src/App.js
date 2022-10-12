@@ -9,7 +9,7 @@ const App = () => {
 	const { toggleModal } = useModalUpdater();
 
 	const runThis = () => {
-		console.log("run this");
+		console.log("run this on unmounting");
 	};
 
 	return (
@@ -232,7 +232,14 @@ const App = () => {
 				pariatur tempora maiores incidunt repellat aperiam.
 			</div>
 
-			<UserModal id="user_modal" onClose={runThis} closeButton closeOnEscapeKey clickOutsideClose scrollLock={false} />
+			<UserModal
+				id="user_modal"
+				onClose={runThis}
+				closeButton
+				closeOnEscapeKey
+				clickOutsideClose
+				scrollLock={false}
+			/>
 		</>
 	);
 };
