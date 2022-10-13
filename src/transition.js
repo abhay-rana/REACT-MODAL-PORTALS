@@ -10,7 +10,6 @@ const Transition = ({ show, children }) => {
 	const onAnimationEnd = () => {
 		if (!show) setRender(false);
 	};
-	console.log({ show, should_render });
 
 	return should_render ? (
 		<div

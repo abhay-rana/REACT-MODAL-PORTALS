@@ -8,8 +8,11 @@ const UserModal = ({ id, ...rest }) => {
 	const { toggleModal } = useModalUpdater();
 	return (
 		<>
-			<Modal id={id} {...rest}>
-				<div className="border-2 border-red-500 w-[500px] max-h-[600px] bg-white overflow-y-auto">
+			<Modal
+				id={id}
+				{...rest}
+			>
+				<div className="border-0 border-red-500 w-[500px] max-h-[600px] bg-white overflow-y-auto">
 					<div>
 						<div>hello abhay rana </div>
 						<div>

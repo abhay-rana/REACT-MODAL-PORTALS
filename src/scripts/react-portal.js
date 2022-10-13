@@ -9,7 +9,7 @@ function createWrapperAndAppendToBody(wrapperId) {
 	return wrapperElement;
 }
 
-const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEscapeKey, handleClose = () => {}, onClose, clickOutsideClose, scrollLock }) => {
+const ReactPortal = ({ modal_element_ref, children, wrapperId = "react-portal-wrapper", closeOnEscapeKey, handleClose = () => {}, onClose, clickOutsideClose, scrollLock }) => {
 	const [wrapperElement, setWrapperElement] = useState(null);
 
 	//disable the background scrolling of the modal
@@ -19,16 +19,14 @@ const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEsca
 			document.body.style.overflow = "hidden";
 		}
 		return () => {
-			// Unsets Background Scrolling to use when SideDrawer/Modal is closed
-			if (scrollLock) document.body.style.overflow = "unset";
+			// // Unsets Background Scrolling to use when SideDrawer/Modal is closed
+			// if (scrollLock) document.body.style.overflow = "unset";
 		};
 	}, []);
 
 	//closing of the modal on the outside click
 	useEffect(() => {
-		console.log("shows modal");
 		const handleClickOutside = (e) => {
-			console.log(e.target, wrapperElement);
 			if (wrapperElement.contains(e.target)) {
 				console.log("clicks inside");
 			} else {
@@ -69,17 +67,22 @@ const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEsca
 			element = createWrapperAndAppendToBody(wrapperId);
 		}
 		setWrapperElement(element);
+		modal_element_ref.current["modal_element"] = element;
 
 		return () => {
 			// delete the programmatically created element
-			if (systemCreated && element.parentNode) {
-				element.parentNode.removeChild(element);
-			}
+			modal_element_ref.current.modal_element.addEventListener("animationend", () => {
+				console.log("animation is ended so delete the node now from the node");
+				if (systemCreated && element.parentNode) {
+					element.parentNode.removeChild(element);
+				}
+			});
 		};
 	}, [wrapperId]);
 
 	//run the onClose function if the user passed this prop on the unmounting
 	useEffect(() => {
+		//this return function fires at the very end of the unmounting
 		return () => {
 			if (typeof onClose === "function") onClose(); //on unmounting run this function if a user specified
 		};
