@@ -238,7 +238,7 @@ const App = () => {
 				closeButton
 				closeOnEscapeKey
 				clickOutsideClose
-				scrollLock={false}
+				scrollLock={true}
 			/>
 		</>
 	);

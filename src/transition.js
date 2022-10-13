@@ -8,7 +8,6 @@ const Transition = ({ show, children }) => {
 	}, [show]);
 
 	const onAnimationEnd = () => {
-		console.log("aniamation ends");
 		if (!show) setRender(false);
 	};
 	console.log({ show, should_render });
