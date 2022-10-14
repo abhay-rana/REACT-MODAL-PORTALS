@@ -29,7 +29,7 @@ const Modal = ({ children, id, closeOnEscapeKey, closeButton, onClose, clickOuts
 					onClose={onClose}
 					clickOutsideClose={clickOutsideClose}
 					scrollLock={scrollLock}
-					modal_element_ref={modal_ref}
+					ref={modal_ref}
 				>
 					<div className="fixed top-1/2 left-1/2 right-1/2 bottom-1/2 flex flex-row justify-center items-center">
 						<div className="relative">

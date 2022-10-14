@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect, useEffect } from "react";
+import { useState, useLayoutEffect, useEffect, forwardRef } from "react";
 import { createPortal } from "react-dom";
 
 //create the node-element and append to the body as the sibling of the "root" node
@@ -9,7 +9,7 @@ function createWrapperAndAppendToBody(wrapperId) {
 	return wrapperElement;
 }
 
-const ReactPortal = ({ modal_element_ref, children, wrapperId = "react-portal-wrapper", closeOnEscapeKey, handleClose = () => {}, onClose, clickOutsideClose, scrollLock }) => {
+const ReactPortal = ({ children, wrapperId = "react-portal-wrapper", closeOnEscapeKey, handleClose = () => {}, onClose, clickOutsideClose, scrollLock }, ref) => {
 	const [wrapperElement, setWrapperElement] = useState(null);
 
 	//disable the background scrolling of the modal
@@ -67,11 +67,11 @@ const ReactPortal = ({ modal_element_ref, children, wrapperId = "react-portal-wr
 			element = createWrapperAndAppendToBody(wrapperId);
 		}
 		setWrapperElement(element);
-		modal_element_ref.current["modal_element"] = element;
+		ref.current["modal_element"] = element;
 
 		return () => {
 			// delete the programmatically created element
-			modal_element_ref.current.modal_element.addEventListener("animationend", () => {
+			ref.current.modal_element.addEventListener("animationend", () => {
 				console.log("animation is ended so delete the node now from the node");
 				if (systemCreated && element.parentNode) {
 					element.parentNode.removeChild(element);
@@ -93,4 +93,4 @@ const ReactPortal = ({ modal_element_ref, children, wrapperId = "react-portal-wr
 
 	return createPortal(children, wrapperElement);
 };
-export default ReactPortal;
+export default forwardRef(ReactPortal);
