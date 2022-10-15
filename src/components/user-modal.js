@@ -2,7 +2,7 @@ import React from "react";
 import { useModalUpdater } from "../provider/portal-provider";
 import Button from "./common/button";
 
-import Modal from "./common/modal";
+import Modal from "./utils/modal/modal";
 
 const UserModal = ({ id, ...rest }) => {
 	const { toggleModal } = useModalUpdater();

@@ -1,8 +1,8 @@
 import React, { memo, useRef } from "react";
-import { useModalState, useModalUpdater } from "../../provider/portal-provider";
+import { useModalState, useModalUpdater } from "../../../provider/portal-provider";
 
-import ReactPortal from "../../scripts/react-portal";
-import Transition from "../../transition";
+import ReactPortal from "./react-portal";
+import Transition from "../../../transition";
 
 const Modal = ({ children, id, closeOnEscapeKey, closeButton, onClose, clickOutsideClose = false, scrollLock = true }) => {
 	const { modal } = useModalState(); //portal_component is a kind of a state of the modal_id (give the current modal on the dom )
