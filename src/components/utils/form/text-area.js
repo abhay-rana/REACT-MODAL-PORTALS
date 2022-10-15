@@ -1,18 +1,37 @@
-import React, { forwardRef, useRef } from "react";
+import React, { forwardRef, useEffect, useRef } from "react";
 
-const TextArea = ({ value, onChange, ...rest }, ref) => {
-	let text_area_ref = useRef();
+const TextArea = ({ value, onChange, resize, className, ...rest }, ref) => {
+	let text_area_ref = useRef(null);
+
+	useEffect(() => {
+		if (text_area_ref?.scrollHeight) {
+			const scrollHeight = text_area_ref.scrollHeight;
+			text_area_ref.style.height = scrollHeight + "px";
+		}
+		return () => {};
+	}, [value]);
+
 	let extra_class = "";
+
 	if (!!resize) extra_class = "resize";
 
 	const getRef = (el) => {
 		text_area_ref = el;
-		if (!!ref) ref = el;
-		console.log({ text_area_ref, ref });
+		if (!!ref) ref.current = el;
 	};
+
+	// Dealing with Textarea Height
+	function calcHeight(value) {
+		let numberOfLineBreaks = (value.match(/\n/g) || []).length;
+		// min-height + lines x line-height + padding + border
+		// let newHeight = 20 + numberOfLineBreaks * 20 + 12 + 2;
+		let newHeight = numberOfLineBreaks * 20;
+		return newHeight;
+	}
 
 	const overrideOnChange = (e) => {
 		onChange(e);
+		text_area_ref.style.height = calcHeight(e.target.value) + "px";
 	};
 
 	return (
@@ -20,7 +39,7 @@ const TextArea = ({ value, onChange, ...rest }, ref) => {
 			<div>
 				<textarea
 					{...rest}
-					className={`border-1 border-black min-h-[40px] leading-[20px] ${extra_class}`}
+					className={` ${className} ${extra_class}`}
 					ref={getRef}
 					onChange={overrideOnChange}
 					value={value}
