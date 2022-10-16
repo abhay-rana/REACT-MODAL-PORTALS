@@ -1,22 +1,30 @@
-import React, { forwardRef, useEffect, useRef } from "react";
+import React, { forwardRef, useEffect, useRef, memo } from "react";
 
-const TextArea = ({ value, onChange, resize, className, ...rest }, ref) => {
-	let text_area_ref = useRef(null);
+const TextArea = ({ value, onChange, min_row, max_row, scroll_direction, className, row_height, ...rest }, ref) => {
+	let text_area_ref = useRef("");
+	let extra_class = useRef("").current;
 
 	useEffect(() => {
-		if (text_area_ref?.scrollHeight) {
-			const scrollHeight = text_area_ref.scrollHeight;
-			text_area_ref.style.height = scrollHeight + "px";
+		if (text_area_ref.current.scrollHeight) {
+			const scrollHeight = text_area_ref.current.scrollHeight;
+			text_area_ref.current.style.height = scrollHeight + "px";
 		}
-		return () => {};
+		return () => {
+			console.log("will this be runs");
+		};
 	}, [value]);
 
-	let extra_class = "";
+	console.log("new", extra_class);
 
-	if (!!resize) extra_class = "resize";
+	if (!!scroll_direction) extra_class += "resize ";
+	if (!!row_height) extra_class += `leading-[${row_height}px] `;
+
+	const min_height = min_row * row_height; //minimum height of the textarea
+	const max_height = max_row * row_height; //maximum height of the textarea
 
 	const getRef = (el) => {
-		text_area_ref = el;
+		console.log({ el });
+		text_area_ref.current = el;
 		if (!!ref) ref.current = el;
 	};
 
@@ -25,24 +33,34 @@ const TextArea = ({ value, onChange, resize, className, ...rest }, ref) => {
 		let numberOfLineBreaks = (value.match(/\n/g) || []).length;
 		// min-height + lines x line-height + padding + border
 		// let newHeight = 20 + numberOfLineBreaks * 20 + 12 + 2;
-		let newHeight = numberOfLineBreaks * 20;
-		return newHeight;
+		let newHeight = numberOfLineBreaks * row_height;
+		console.log(!!max_row && newHeight > max_height);
+		//if the newHeight is more than the maximumHeight then show the scrollbar
+		if (!!max_row && newHeight > max_height) {
+			extra_class += `overflow-y-auto text-lg`;
+			console.log(extra_class);
+		}
+
+		return min_height > newHeight ? min_height : newHeight;
 	}
 
 	const overrideOnChange = (e) => {
 		onChange(e);
-		text_area_ref.style.height = calcHeight(e.target.value) + "px";
+		text_area_ref.current.style.height = calcHeight(e.target.value) + "px";
 	};
+
+	console.log("old", extra_class);
 
 	return (
 		<>
 			<div>
 				<textarea
-					{...rest}
-					className={` ${className} ${extra_class}`}
+					className={` ${className} ${extra_class} `}
 					ref={getRef}
 					onChange={overrideOnChange}
 					value={value}
+					rows={min_row}
+					{...rest}
 				/>
 			</div>
 			<div></div>
@@ -50,4 +68,4 @@ const TextArea = ({ value, onChange, resize, className, ...rest }, ref) => {
 	);
 };
 
-export default forwardRef(TextArea);
+export default memo(forwardRef(TextArea));
