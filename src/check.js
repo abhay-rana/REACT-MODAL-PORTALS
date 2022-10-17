@@ -1,23 +1,24 @@
 import React, { useState } from "react";
-import Transition from "./transition";
-import "../src/styles/global.css";
+
+import TextArea from "./components/utils/form/text-area";
 
 const Check = () => {
-	const [show, setShow] = useState(false);
-	return (
-		<>
-			<div>
-				<button onClick={() => setShow(!show)}>hello dear</button>
-				<Transition show={show}>
-					<>
-						<div>
-							<p>hello abhay</p>
-						</div>
-					</>
-				</Transition>
-			</div>
-		</>
-	);
+  const [state, setState] = useState("");
+  return (
+    <>
+      <div>
+        <TextArea
+          value={state}
+          onChange={(e) => setState(e.target.value)}
+          className=""
+          placeholder="This is placeholder"
+          row_height={20}
+          min_row={4}
+          max_row={8}
+        />
+      </div>
+    </>
+  );
 };
 
 export default Check;
