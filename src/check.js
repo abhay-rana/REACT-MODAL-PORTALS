@@ -10,11 +10,11 @@ const Check = () => {
         <TextArea
           value={state}
           onChange={(e) => setState(e.target.value)}
-          className=""
+          className="border-2 border-black"
           placeholder="This is placeholder"
-          row_height={20}
+          row_height={20} //this is in px this is line height 
           min_row={4}
-          max_row={8}
+          max_row={20}
         />
       </div>
     </>
