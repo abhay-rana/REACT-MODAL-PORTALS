@@ -3,6 +3,7 @@ import React, { forwardRef, useEffect, useRef, memo } from "react";
 const TextArea = ({ value, onChange, min_row, max_row, scroll_direction, className, row_height, ...rest }, ref) => {
 	const text_area_ref = useRef();
 	const extra_class = useRef("");
+	const word_counter = useRef(0);
 
 	useEffect(() => {
 		if (!!scroll_direction) extra_class.current += "resize ";
@@ -17,6 +18,8 @@ const TextArea = ({ value, onChange, min_row, max_row, scroll_direction, classNa
 			const scrollHeight = text_area_ref.current.scrollHeight > max_height ? max_height : text_area_ref.current.scrollHeight;
 			text_area_ref.current.style.height = scrollHeight + "px";
 		}
+		//change the word counter on the every input of the text
+		word_counter.current.innerText = `${value.length - (value.match(/\n/g) || []).length}/${rest.maxLength}`;
 	}, [value]);
 
 	const min_height = min_row * row_height; //minimum height of the textarea
@@ -51,7 +54,7 @@ const TextArea = ({ value, onChange, min_row, max_row, scroll_direction, classNa
 
 	return (
 		<>
-			<div>
+			<div className="flex-col">
 				<textarea
 					className={`${className} ${extra_class.current} ${extra_class.overflow} `}
 					ref={getRef}
@@ -60,6 +63,10 @@ const TextArea = ({ value, onChange, min_row, max_row, scroll_direction, classNa
 					rows={min_row}
 					{...rest}
 				/>
+				<div
+					ref={word_counter}
+					className=""
+				></div>
 			</div>
 		</>
 	);
