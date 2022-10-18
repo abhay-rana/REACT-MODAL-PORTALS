@@ -15,6 +15,7 @@ const Check = () => {
 					row_height={20} //this is in px this is line height
 					min_row={4}
 					max_row={10}
+					maxLength={200}
 				/>
 			</div>
 		</>
