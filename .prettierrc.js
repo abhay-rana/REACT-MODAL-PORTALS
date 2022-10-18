@@ -9,5 +9,6 @@ module.exports = {
 	arrowParens: "always",
 	jsxBracketSameLine: false,
 	bracketSpacing: true,
-	jsxSingleQuote: false
+	jsxSingleQuote: false,
+	singleAttributePerLine: true //multiline attribute
 };
