@@ -1,17 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+import ModalProvider from "./provider/portal-provider";
+
 import "./styles/global.css";
 
 import App from "./app";
-
-import ModalProvider from "./provider/portal-provider";
-import Check from "./check";
+// import Check from "./check";
+import Do from "./do";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<ModalProvider>
 		{/* <App /> */}
-		<Check />
+		{/* <Check /> */}
+		<Do />
 	</ModalProvider>
 );
