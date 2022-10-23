@@ -5,16 +5,17 @@ import ModalProvider from "./provider/portal-provider";
 
 import "./styles/global.css";
 
-import App from "./app";
+// import App from "./app";
 // import Check from "./check";
-
-import FaqAccordion from "./faq-accordion";
+// import FaqAccordion from "./faq-accordion";
+import CustomInput from "./custom-input";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<ModalProvider>
 		{/* <App /> */}
 		{/* <Check /> */}
-		<FaqAccordion />
+		{/* <FaqAccordion /> */}
+		<CustomInput />
 	</ModalProvider>
 );
