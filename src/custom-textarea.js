@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import TextArea from "./components/utils/form/text-area";
 
-const Check = () => {
+const CustomTextArea = () => {
 	const [state, setState] = useState("");
 	return (
 		<>
@@ -22,4 +22,4 @@ const Check = () => {
 	);
 };
 
-export default Check;
+export default CustomTextArea;
