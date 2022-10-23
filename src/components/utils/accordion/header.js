@@ -1,15 +1,20 @@
-import React from "react";
+import React, { memo } from "react";
 import { useAccordion } from ".";
 
-const Header = ({ children, ...restProps }) => {
-	const { isExpanded, setExpand } = useAccordion();
-	console.log({ restProps });
+const Header = ({ children, id }) => {
+	const { get_id, setId, onClick } = useAccordion();
+	const setAccordionId = (id) => {
+		onClick();
+		setId(id);
+	};
 	return (
 		<>
-			<div>{children}</div>
-			{/* <button onClick={() => setExpand(id)}></button> */}
+			<div className="flex justify-between ">
+				<div>{children}</div>
+				<button onClick={() => setAccordionId(id)}>{id === get_id ? "Close" : "Open"}</button>
+			</div>
 		</>
 	);
 };
 
-export default Header;
+export default memo(Header);

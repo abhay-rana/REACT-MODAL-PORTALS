@@ -1,13 +1,18 @@
-import React from "react";
+import React, { memo } from "react";
+import { useAccordion } from ".";
 
-const Content = ({ children, ...restProps }) => {
-	console.log({ restProps });
+const Content = ({ children, id }) => {
+	const { get_id, setId } = useAccordion();
 
 	return (
 		<>
-			<div>{children}</div>
+			{get_id == id ? (
+				<>
+					<div>{children}</div>
+				</>
+			) : null}
 		</>
 	);
 };
 
-export default Content;
+export default memo(Content);

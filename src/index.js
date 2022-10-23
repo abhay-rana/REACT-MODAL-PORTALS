@@ -7,13 +7,14 @@ import "./styles/global.css";
 
 import App from "./app";
 // import Check from "./check";
-import Do from "./do";
+
+import FaqAccordion from "./faq-accordion";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<ModalProvider>
 		{/* <App /> */}
 		{/* <Check /> */}
-		<Do />
+		<FaqAccordion />
 	</ModalProvider>
 );

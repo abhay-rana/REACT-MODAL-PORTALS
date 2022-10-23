@@ -13,7 +13,7 @@ export const useAccordion = () => {
 	if (context === undefined) {
 		throw new Error("usePortalContextState was used outside of its Provider");
 	}
-	console.log(context);
+
 	return context;
 };
 

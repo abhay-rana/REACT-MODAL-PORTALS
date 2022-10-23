@@ -1,11 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 
-const AccordionItem = ({ children, ...restProps }) => {
+const AccordionItem = ({ children, id }) => {
 	return (
 		<>
-			<div>{React.Children.map(children, (children) => React.cloneElement(children, { ...restProps }))}</div>
+			<div className="m-3 border-2 border-black">{React.Children.map(children, (child) => React.cloneElement(child, { id }))}</div>
 		</>
 	);
 };
 
-export default AccordionItem;
+export default memo(AccordionItem);
