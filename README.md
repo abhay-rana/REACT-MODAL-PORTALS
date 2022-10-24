@@ -39,4 +39,14 @@ so there are 4 ways so to close this modal
 4-> defaultExpanded accordion
 5-> opensUp the multiple accordion at a time (by default it is "False")
 6-> works on the re-rending of the accordion (future request)
-7-> user change the caret image according to itself and change the position
+7-> user change the caret image according to itself and change the position (future request)
+8-> all the content is loaded in the dom but shown when the user expand to it which is best for the terms of the seo
+
+<!-- React TextArea -->
+
+1-> Autogrow textarea
+2-> have the min row which is the minimum height of the textarea
+3-> have the max row which is the maximum height of the textarea after that height if the more content is added then show the scroll bar increase the scroll height but not the height
+4-> max word count also which will stops the writing
+
+<!-- react Custom Input -->

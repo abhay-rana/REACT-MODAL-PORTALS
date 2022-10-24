@@ -7,7 +7,7 @@ import Content from "./content";
 import AccordionItem from "./accordrion-item";
 import { arrayRemove } from "../../../scripts/utils-functions";
 
-const Accordion = ({ children, onClick = () => {}, defaultExpanded, openMultiple = false }) => {
+const Accordion = memo(({ children, onClick = () => {}, defaultExpanded, openMultiple = false }) => {
 	const [get_id, setExpand] = useState([defaultExpanded]);
 
 	const setId = useCallback(
@@ -34,10 +34,12 @@ const Accordion = ({ children, onClick = () => {}, defaultExpanded, openMultiple
 			<AccordionProvider value={value}>{children}</AccordionProvider>
 		</>
 	);
-};
+});
 
 Accordion.Header = Header;
 Accordion.Content = Content;
 Accordion.AccordionItem = AccordionItem;
+
+Accordion.displayName = "Accordion"; // now the component name is not shown as the anonymous
 
 export default Accordion;
