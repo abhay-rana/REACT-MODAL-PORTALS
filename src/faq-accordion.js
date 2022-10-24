@@ -10,8 +10,9 @@ const FaqAccordion = () => {
 	return (
 		<>
 			<Accordion
-				defaultExpanded={2}
+				defaultExpanded={2} //this is the id of the particular item not the index
 				onClick={clickHandler}
+				openMultiple={false}
 			>
 				{data.map((item) => {
 					return (

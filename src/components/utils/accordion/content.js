@@ -6,11 +6,7 @@ const Content = ({ children, id }) => {
 
 	return (
 		<>
-			{get_id == id ? (
-				<>
-					<div>{children}</div>
-				</>
-			) : null}
+			<div className={`${!get_id.includes(id) && "hidden"}`}>{children}</div>
 		</>
 	);
 };

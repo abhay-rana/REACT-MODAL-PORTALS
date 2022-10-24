@@ -5,14 +5,20 @@ import { AccordionProvider } from "./index";
 import Header from "./header";
 import Content from "./content";
 import AccordionItem from "./accordrion-item";
+import { arrayRemove } from "../../../scripts/utils-functions";
 
-const Accordion = ({ children, onClick = () => {} }) => {
-	const [get_id, setExpand] = useState(null);
+const Accordion = ({ children, onClick = () => {}, defaultExpanded, openMultiple = false }) => {
+	const [get_id, setExpand] = useState([defaultExpanded]);
 
 	const setId = useCallback(
 		(id) => {
-			if (id === get_id) setExpand("");
-			else if (id != get_id) setExpand(id);
+			if (openMultiple === true) {
+				if (get_id.includes(id)) setExpand(arrayRemove(get_id, id)); //if the id is already present them remove it
+				else setExpand(get_id.concat([id])); //if the id is not present then add into the array
+			} else {
+				if (get_id.includes(id)) setExpand([]); //if the id is already present then set to the null
+				else setExpand([id]); //if the id is not present then add into the array
+			}
 		},
 		[get_id]
 	);

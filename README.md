@@ -30,3 +30,13 @@ so there are 4 ways so to close this modal
 2-> escape button
 3-> close button
 4-> programmatically Modal.hide("id")
+
+<!-- React Accordion Component -->
+
+1-> uses of the compound components for the flexibility and the reusability pof the components
+2-> uses of the react context api
+3-> fire the callback function on the opens and the closes of the accordion
+4-> defaultExpanded accordion
+5-> opensUp the multiple accordion at a time (by default it is "False")
+6-> works on the re-rending of the accordion (future request)
+7-> user change the caret image according to itself and change the position
