@@ -12,9 +12,9 @@ const CustomTextArea = () => {
 					onChange={(e) => setState(e.target.value)}
 					className="m-4 w-[500px] border-2 border-black p-4"
 					placeholder="This is placeholder"
-					row_height={20} //this is in px this is line height
-					min_row={4}
-					max_row={10}
+					rowHeight={20} //this is in px this is line height
+					minRow={4}
+					maxRow={10}
 					maxLength={200}
 				/>
 			</div>
