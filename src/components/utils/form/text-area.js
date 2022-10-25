@@ -1,16 +1,16 @@
 import React, { forwardRef, useEffect, useRef, memo } from "react";
 
-const TextArea = ({ value, onChange, min_row, max_row, scroll_direction, className, row_height, ...rest }, ref) => {
+const TextArea = ({ value, onChange, minRow, maxRow, scrollDirection, className, rowHeight, ...rest }, ref) => {
 	const text_area_ref = useRef();
 	const extra_class = useRef("");
 	const word_counter = useRef(0);
 
 	useEffect(() => {
-		if (!!scroll_direction) extra_class.current += "resize ";
-		if (!!row_height) extra_class.current += `leading-[${row_height}px] `;
+		if (!!scrollDirection) extra_class.current += "resize ";
+		if (!!rowHeight) extra_class.current += `leading-[${rowHeight}px] `;
 
 		//on the first time mounting the height of the textarea should be the
-		text_area_ref.current.style.height = min_row * row_height + "px";
+		text_area_ref.current.style.height = minRow * rowHeight + "px";
 	}, []);
 
 	useEffect(() => {
@@ -22,8 +22,8 @@ const TextArea = ({ value, onChange, min_row, max_row, scroll_direction, classNa
 		word_counter.current.innerText = `${value.length - (value.match(/\n/g) || []).length}/${rest.maxLength}`;
 	}, [value]);
 
-	const min_height = min_row * row_height; //minimum height of the textarea
-	const max_height = max_row * row_height; //maximum height of the textarea
+	const min_height = minRow * rowHeight; //minimum height of the textarea
+	const max_height = maxRow * rowHeight; //maximum height of the textarea
 
 	const getRef = (el) => {
 		text_area_ref.current = el;
@@ -35,10 +35,10 @@ const TextArea = ({ value, onChange, min_row, max_row, scroll_direction, classNa
 		let numberOfLineBreaks = (value.match(/\n/g) || []).length;
 		// min-height + lines x line-height + padding + border
 		// let newHeight = 20 + numberOfLineBreaks * 20 + 12 + 2;
-		let newHeight = numberOfLineBreaks * row_height;
+		let newHeight = numberOfLineBreaks * rowHeight;
 
 		//if the newHeight is more than the maximumHeight then show the scrollbar
-		if (!!max_row && newHeight > max_height) {
+		if (!!maxRow && newHeight > max_height) {
 			extra_class.overflow = "overflow-y-auto ";
 		} else {
 			extra_class.overflow = "overflow-hidden ";
@@ -60,7 +60,7 @@ const TextArea = ({ value, onChange, min_row, max_row, scroll_direction, classNa
 					ref={getRef}
 					onChange={overrideOnChange}
 					value={value}
-					rows={min_row}
+					rows={minRow}
 					{...rest}
 				/>
 				<div
