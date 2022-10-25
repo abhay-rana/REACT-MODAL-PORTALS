@@ -9,11 +9,13 @@ const Input = (
 		topHeight = 40,
 		floatingLabel = true,
 		onErrorClick = () => {},
-		className,
+		className = "",
 		placeholder,
 		required = false,
 		error,
 		iconImg,
+		disabled = false,
+		onIconClick,
 		...restProps
 	},
 	ref
@@ -26,7 +28,8 @@ const Input = (
 		floating_className = `uppercase `;
 	}
 
-	if (!!error) extra_class = `border-1 border-red-600 `;
+	if (!!error) extra_class += `border-1 border-red-600 `;
+	if (!!disabled) className += `pointer-events-none `;
 
 	const getRef = (el) => {
 		input_ref.current = el;
@@ -44,13 +47,14 @@ const Input = (
 	return (
 		<>
 			<div
-				className={`relative inline-block ${margin_top} h-full w-full border-2 border-black ${className}`}
+				className={`relative inline-block h-full w-full border-2 border-black ${className}`}
 				style={{ marginTop: `${topHeight}px` }}
 			>
 				{/* absolute will be respective to the parent and loose its old position */}
 				<input
 					ref={getRef}
 					id={name}
+					disabled={disabled}
 					name={name}
 					onFocus={addPlaceholder}
 					onBlur={removePlaceholder}
@@ -82,7 +86,14 @@ const Input = (
 						</div>
 					</>
 				) : null}
-				{!!iconImg ? <div className="absolute right-0 top-1 cursor-pointer  p-[3px] hover:scale-125">{iconImg}</div> : null}
+				{!!iconImg ? (
+					<div
+						className="absolute right-0 top-1 cursor-pointer  p-[3px] hover:scale-125"
+						onClick={onIconClick}
+					>
+						{iconImg}
+					</div>
+				) : null}
 			</div>
 		</>
 	);

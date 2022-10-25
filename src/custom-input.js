@@ -20,6 +20,12 @@ const CustomInput = () => {
 	const fireError = () => {
 		console.log("hello abhay");
 	};
+
+	const setThis = () => console.log("run this");
+
+	const parentFires = () => console.log("parent fires");
+
+	const garendParent = () => console.log("grand parent fires");
 	return (
 		<>
 			<div className="flex flex-col">
@@ -64,17 +70,25 @@ const CustomInput = () => {
 						disabled
 						error="This is error message"
 						floatingLabel
-						className="mt-6"
 						iconImg={
 							<Download
 								className="h-6 w-6"
 								fill="red"
 							/>
 						}
+						onIconClick={setThis}
 					/>
 				</div>
 			</div>
 			<button onClick={setErr}>Set Error</button>
+			<div
+				onClickCapture={garendParent}
+				className="pointer-events-none"
+			>
+				<div onClick={parentFires}>
+					<div onClick={setThis}>Abhay Rana</div>
+				</div>
+			</div>
 		</>
 	);
 };
