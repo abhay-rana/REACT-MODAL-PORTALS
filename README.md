@@ -49,4 +49,11 @@ so there are 4 ways so to close this modal
 3-> have the max row which is the maximum height of the textarea after that height if the more content is added then show the scroll bar increase the scroll height but not the height
 4-> max word count also which will stops the writing
 
-<!-- react Custom Input -->
+<!-- react Custom Input Floating label-->
+
+1->"required" props for the asterisk sign (default false)
+2-> "onChange" to set the "value" of the input
+3-> "error" validation with the red cross icon
+4-> "iconImg" prop for the render the image on the input field you can render the image or the normal image also
+5-> "onImageClick" callback fires on the image click
+6-> "onErrorClick" callback fired on the error image click

@@ -31,7 +31,7 @@ const Modal = ({ children, id, closeOnEscapeKey, closeButton, onClose, clickOuts
 					scrollLock={scrollLock}
 					ref={modal_ref}
 				>
-					<div className="fixed top-1/2 left-1/2 right-1/2 bottom-1/2 flex flex-row justify-center items-center">
+					<div className="fixed top-1/2 left-1/2 right-1/2 bottom-1/2 flex flex-row items-center justify-center">
 						<div className="relative">
 							{children}
 							<div className="absolute right-0 top-0 p-2">{closeButton ? <button onClick={handleClose}>X</button> : null}</div>

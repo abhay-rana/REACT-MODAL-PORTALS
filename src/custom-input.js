@@ -6,11 +6,14 @@ import { ReactComponent as Download } from "./assets/svg/download.svg";
 
 const CustomInput = () => {
 	const [state, setState] = useState({});
+	const [username, setUsername] = useState("");
 	const [error, setError] = useState("");
 
 	const onChangeInput = (key, value) => {
 		setState({ ...state, [key]: value });
 	};
+
+	
 
 	const setErr = () => {
 		if (error) setError("");
@@ -32,8 +35,8 @@ const CustomInput = () => {
 				<Input
 					label="Username"
 					name="username"
-					value={state.password}
-					onChange={(e) => onChangeInput(e.target.name, e.target.value)}
+					value={username}
+					onChange={(e) => setUsername(e.target.value)}
 					type="input"
 					placeholder={"Enter Username"}
 					autoComplete="off"
@@ -55,9 +58,10 @@ const CustomInput = () => {
 						onFocus={setErr}
 						error={error}
 						onErrorClick={fireError}
+						suffix="Suffix"
 					/>
 				</div>
-				<div className="h-[100px] w-[250px]">
+				<div className="m-5 h-[100px] w-[250px]">
 					<Input
 						name="name"
 						label="Name"
@@ -68,25 +72,15 @@ const CustomInput = () => {
 						autoComplete="off"
 						required
 						disabled
-						error="This is error message"
 						floatingLabel
 						iconImg={
 							<Download
 								className="h-6 w-6"
 								fill="red"
-							/>
+							/> //you can render the image or the normal image also
 						}
 						onIconClick={setThis}
 					/>
-				</div>
-			</div>
-			<button onClick={setErr}>Set Error</button>
-			<div
-				onClickCapture={garendParent}
-				className="pointer-events-none"
-			>
-				<div onClick={parentFires}>
-					<div onClick={setThis}>Abhay Rana</div>
 				</div>
 			</div>
 		</>
