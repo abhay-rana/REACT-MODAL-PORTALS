@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import Input from "./components/utils/form/input";
+import AnupInput from "./components/utils/form/input-anup";
 
 import { ReactComponent as Download } from "./assets/svg/download.svg";
 
@@ -13,8 +14,6 @@ const CustomInput = () => {
 		setState({ ...state, [key]: value });
 	};
 
-	
-
 	const setErr = () => {
 		if (error) setError("");
 		else setError("This is Error");
@@ -24,7 +23,7 @@ const CustomInput = () => {
 		console.log("hello abhay");
 	};
 
-	const setThis = () => console.log("run this");
+	const runThis = () => console.log("run this");
 
 	const parentFires = () => console.log("parent fires");
 
@@ -32,18 +31,54 @@ const CustomInput = () => {
 	return (
 		<>
 			<div className="flex flex-col">
-				<Input
-					label="Username"
-					name="username"
-					value={username}
-					onChange={(e) => setUsername(e.target.value)}
-					type="input"
-					placeholder={"Enter Username"}
-					autoComplete="off"
-					floatingLabel
-					topHeight={30}
-				/>
-				<div className="m-4 h-[50px] w-[300px]">
+				<div className="w-[250px]">
+					<Input
+						name="username"
+						value={username}
+						onChange={(e) => setUsername(e.target.value)}
+						type="text"
+						placeholder={"Enter Username"}
+						autoComplete="off"
+						floatingLabel
+						topHeight={30}
+						required
+						label={"Username"}
+						suffix={
+							<Input.Suffix
+								onClick={runThis}
+								className="absolute top-2.5 right-0 px-4 "
+							>
+								<p>Image</p>
+							</Input.Suffix>
+						}
+						prefix={
+							<Input.Prefix
+								onClick={runThis}
+								className="absolute  left-0 top-2.5 px-1"
+							>
+								<Download
+									className="h-6 w-6"
+									fill="red"
+								/>
+							</Input.Prefix>
+						}
+					/>
+				</div>
+				<div className="w-[250px] m-4">
+					<AnupInput
+						name="anup"
+						value={username}
+						onChange={(e) => setUsername(e.target.value)}
+						type="text"
+						placeholder={"Enter Username"}
+						autoComplete="off"
+						floatingLabel
+						topHeight={30}
+						required
+						label={"Username"}
+					/>
+				</div>
+				{/* <div className="m-4 h-[50px] w-[300px]">
 					<Input
 						topHeight={50}
 						label="Password"
@@ -81,7 +116,7 @@ const CustomInput = () => {
 						}
 						onIconClick={setThis}
 					/>
-				</div>
+				</div> */}
 			</div>
 		</>
 	);

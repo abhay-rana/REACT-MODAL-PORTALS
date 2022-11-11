@@ -2,14 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+/* always set this like this html and body element */
+
+html,body {
 	background-color: #f2f7f9;
 	font-family: "Poppins", sans-serif;
+	min-height: 100vh;
+	width: 100%;
 }
 
-body {
-	min-height: 100vh;
+#root {
+	height: 100vh; 
+	width: 100%;
 }
+/* min-height is not inherited by the child  so we have replace the min-height by the height property */
 
 
 .fade-in-animation{
@@ -48,7 +54,7 @@ body {
 		right: 0;
 		bottom: 0;
 		opacity: 1;
-		background-color:  #00000073;
+		background-color:  rgba(235, 220, 13, 0.492);
 	}
 	100% {
 	  opacity: 0;

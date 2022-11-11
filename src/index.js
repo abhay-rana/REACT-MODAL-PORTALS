@@ -8,7 +8,9 @@ import "./styles/global.css";
 // import CustomModal from "./custom-modal";
 // import CustomTextArea from "./custom-textarea";
 // import FaqAccordion from "./faq-accordion";
-import CustomInput from "./custom-input";
+// import CustomInput from "./custom-input";
+// import Test from "./test";
+import Login from "./test-components/login";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,6 +18,9 @@ root.render(
 		{/* <CustomModal /> */}
 		{/* <CustomTextArea /> */}
 		{/* <FaqAccordion /> */}
-		<CustomInput />
+		{/* <CustomInput /> */}
+		{/* <Test /> */}
+
+		<Login />
 	</ModalProvider>
 );

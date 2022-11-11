@@ -1,6 +1,5 @@
 module.exports = {
 	content: ["./src/**/*.{html,js}"],
-	mode: "jit",
 	darkMode: "class", //dark mode is apply when there is change in the root class
 	theme: {
 		fontFamily: {
