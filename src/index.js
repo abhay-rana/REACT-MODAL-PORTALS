@@ -10,7 +10,9 @@ import "./styles/global.css";
 // import FaqAccordion from "./faq-accordion";
 // import CustomInput from "./custom-input";
 // import Test from "./test";
-import Login from "./test-components/login";
+import ButtonTest from "./test-components/button-test";
+import SpinnerTest from "./test-components/spinner-test";
+// import Login from "./test-components/login";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,8 +21,9 @@ root.render(
 		{/* <CustomTextArea /> */}
 		{/* <FaqAccordion /> */}
 		{/* <CustomInput /> */}
-		{/* <Test /> */}
-
-		<Login />
+		{/* <Button /> */}
+		{/* <ButtonTest /> */}
+		<SpinnerTest />
+		{/* <Login /> */}
 	</ModalProvider>
 );
