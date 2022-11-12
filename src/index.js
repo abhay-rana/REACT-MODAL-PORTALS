@@ -22,8 +22,8 @@ root.render(
 		{/* <FaqAccordion /> */}
 		{/* <CustomInput /> */}
 		{/* <Button /> */}
-		{/* <ButtonTest /> */}
-		<SpinnerTest />
+		<ButtonTest />
+		{/* <SpinnerTest /> */}
 		{/* <Login /> */}
 	</ModalProvider>
 );
