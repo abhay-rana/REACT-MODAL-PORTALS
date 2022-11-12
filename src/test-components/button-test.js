@@ -103,7 +103,7 @@ const ButtonTest = () => {
 								>
 									<p>loader and icon</p>
 									<Download
-										className="ml-4"
+										className="ml-4 mr-2"
 										width={12}
 										fill={"red"}
 									/>

@@ -1,7 +1,7 @@
 import { forwardRef, memo } from "react";
 import PropTypes from "prop-types";
 
-const Input = memo(
+const AbhayInput = memo(
 	forwardRef((props, ref) => {
 		const default_props = {
 			type: props.type,
@@ -23,60 +23,83 @@ const Input = memo(
 			style: props.style,
 			step: props.step
 		};
-		const { className, error, success, small, large, children, label, stacked, controlRef, no_gap, light, note } = { ...props };
+		const { className, error, success, small, large, children, label, stacked, no_gap, light, note, labelStyle, filled, iconTrailing, floating } =
+			{
+				...props
+			};
 
-		let extraClass = "w-full z-0 box-border text-gray-dark focus:border-primary focus:outline-none placeholder-gray-light hover:border-primary";
+		let extraClass = {};
+		extraClass.input = "w-full z-0 box-border text-gray-dark focus:border-primary focus:outline-none placeholder-gray-light hover:border-primary";
 		if (small) {
-			extraClass += stacked ? " h-7 text-base" : " h-7 px-2 text-base";
+			extraClass.input += stacked ? " h-7 text-base" : " h-7 px-2 text-base";
 		} else if (large) {
-			extraClass += stacked ? " h-10" : " h-10 px-2";
+			extraClass.input += stacked ? " h-10" : " h-10 px-2";
 		} else {
-			extraClass += stacked ? " h-8 text-base" : " h-8 px-2 text-base";
+			extraClass.input += stacked ? " h-8 text-base" : " h-8 px-2 text-base";
 		}
 
 		if (stacked) {
-			extraClass += " border-b bg-transparent px-0";
+			extraClass.input += " border-b bg-transparent ";
 		} else {
-			extraClass += " border";
+			extraClass.input += " border";
+		}
+
+		if (filled) {
+			extraClass.label += " px-2 pt-2 text-black ";
+			extraClass.input += " px-2 placeholder:text-black/50 bg-transparent ";
+			extraClass.note += " px-2 ";
+			extraClass.error += "px-2";
+			extraClass.filled += " bg-[#00000008] hover:bg-[#00000014] focus:bg-[#00000014] rounded-md ";
+		}
+
+		if (!!floating) {
 		}
 
 		if (light) {
-			extraClass += " text-white placeholder-gray-md";
+			extraClass.input += " text-white placeholder-gray-md ";
 		}
 
 		const showError = (typeof error != "boolean" && error) || (typeof success != "boolean" && success);
 
 		if (showError) {
-			extraClass += " border-danger";
+			extraClass.input += " border-danger";
 		} else if (success) {
-			extraClass += " border-success";
+			extraClass.input += " border-success";
 		} else {
-			extraClass += " border-gray-light";
+			extraClass.input += " border-gray-light";
 		}
 
 		if (className) {
-			extraClass += ` ${className}`;
+			extraClass.input += ` ${className}`;
 		}
 
 		return (
 			<div className="group">
-				{label ? (
-					<label className={`mb-1 block text-xs font-normal ${showError ? "text-danger" : "text-gray-500"} group-hover:text-primary`}>
-						{label}
-					</label>
-				) : null}
-				{children}
-				<input
-					{...default_props}
-					className={extraClass}
-					ref={ref}
-				/>
+				<div className={`${extraClass.filled} relative`}>
+					{label ? (
+						<label
+							htmlFor={default_props.id}
+							className={`mb-1 block text-xs font-normal ${labelStyle} ${
+								showError ? "text-danger" : "text-gray-500"
+							} group-hover:text-primary  ${extraClass.label} `}
+						>
+							{label}
+						</label>
+					) : null}
+					{children}
+					<input
+						{...default_props}
+						className={extraClass.input}
+						ref={ref}
+					/>
+					{!!iconTrailing ? <div className="absolute right-2 bottom-2">{iconTrailing}</div> : null}
+				</div>
 				{error || note ? (
 					<div className="h-6">
 						{showError ? (
 							<div className={`text-xs ${error ? "text-danger" : success ? "text-success" : null}`}>{error || success}</div>
 						) : note ? (
-							<div className="text-xs text-gray-medium">{note}</div>
+							<div className={`mt-[2px] text-xs text-gray-medium ${extraClass.note}`}>{note}</div>
 						) : null}
 					</div>
 				) : null}
@@ -84,8 +107,10 @@ const Input = memo(
 		);
 	})
 );
-export default Input;
-Input.propTypes = {
+
+AbhayInput.displayName = "AbhayInput";
+export default AbhayInput;
+AbhayInput.propTypes = {
 	/** string type default is text  */
 	type: PropTypes.string,
 	/** default is false   */

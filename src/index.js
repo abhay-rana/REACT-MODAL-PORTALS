@@ -8,7 +8,7 @@ import "./styles/global.css";
 // import CustomModal from "./custom-modal";
 // import CustomTextArea from "./custom-textarea";
 // import FaqAccordion from "./faq-accordion";
-// import CustomInput from "./custom-input";
+import CustomInput from "./custom-input";
 // import Test from "./test";
 import ButtonTest from "./test-components/button-test";
 // import SpinnerTest from "./test-components/spinner-test";
@@ -20,9 +20,9 @@ root.render(
 		{/* <CustomModal /> */}
 		{/* <CustomTextArea /> */}
 		{/* <FaqAccordion /> */}
-		{/* <CustomInput /> */}
-		{/* <Button /> */}
-		<ButtonTest />
+		<CustomInput />
+
+		{/* <ButtonTest /> */}
 		{/* <SpinnerTest /> */}
 		{/* <Login /> */}
 	</ModalProvider>

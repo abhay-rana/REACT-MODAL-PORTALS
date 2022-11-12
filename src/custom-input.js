@@ -2,8 +2,10 @@ import React, { useState } from "react";
 
 import Input from "./components/utils/form/input";
 import AnupInput from "./components/utils/form/input-anup";
+import AbhayInput from "./components/utils/form/input-new";
 
 import { ReactComponent as Download } from "./assets/svg/download.svg";
+import { ReactComponent as Cross } from "./assets/svg/cross.svg";
 
 const CustomInput = () => {
 	const [state, setState] = useState({});
@@ -64,7 +66,23 @@ const CustomInput = () => {
 						}
 					/>
 				</div>
-				<div className="w-[250px] m-4">
+				<div className="m-4 w-[250px]">
+					<AnupInput
+						name="anup"
+						value={username}
+						onChange={(e) => setUsername(e.target.value)}
+						type="text"
+						placeholder={"Enter Username"}
+						autoComplete="off"
+						disabled
+						floatingLabel
+						topHeight={30}
+						required
+						label="username"
+						note="note"
+					/>
+				</div>
+				<div className="m-4 w-[250px]">
 					<AnupInput
 						name="anup"
 						value={username}
@@ -73,11 +91,61 @@ const CustomInput = () => {
 						placeholder={"Enter Username"}
 						autoComplete="off"
 						floatingLabel
+						disabled
 						topHeight={30}
 						required
-						label={"Username"}
+						error="Email is not correct"
+						stacked
 					/>
 				</div>
+				<div className="m-4 w-[250px]">
+					<AbhayInput
+						labelStyle=""
+						name="new-input"
+						id={"unique"}
+						value={username}
+						onChange={(e) => setUsername(e.target.value)}
+						type="text"
+						label="Label"
+						placeholder={"Enter Username"}
+						autoComplete="off"
+						floatingLabel
+						note="hello this is note"
+						topHeight={30}
+						required
+						filled
+						stacked
+						iconTrailing={
+							<Cross
+								width={12}
+								height={18}
+							/>
+						}
+					/>
+				</div>
+				<div className="m-4 w-[250px]">
+					<AbhayInput
+						name="new-input"
+						id={"unique"}
+						value={username}
+						onChange={(e) => setUsername(e.target.value)}
+						type="text"
+						label="Label"
+						placeholder={"Enter Username"}
+						autoComplete="off"
+						floatingLabel
+						note="hello this is note"
+						topHeight={30}
+						required
+						iconTrailing={
+							<Cross
+								width={12}
+								height={18}
+							/>
+						}
+					/>
+				</div>
+
 				{/* <div className="m-4 h-[50px] w-[300px]">
 					<Input
 						topHeight={50}
