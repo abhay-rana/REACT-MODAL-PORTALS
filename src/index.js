@@ -11,7 +11,7 @@ import "./styles/global.css";
 // import CustomInput from "./custom-input";
 // import Test from "./test";
 import ButtonTest from "./test-components/button-test";
-import SpinnerTest from "./test-components/spinner-test";
+// import SpinnerTest from "./test-components/spinner-test";
 // import Login from "./test-components/login";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
